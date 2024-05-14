@@ -241,7 +241,7 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
                 ),
-                //! Last Part  (List view)
+                //! Last Part  (Long photo)
                 const SizedBox(height: 50),
                 LontPicWidget(
                   right: queryData.size.width * 0.30,
