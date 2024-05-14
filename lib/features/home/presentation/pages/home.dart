@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tripstick/core/common/text_types.dart';
 import 'package:tripstick/features/home/presentation/cubit/home_cubit_cubit.dart';
+import 'package:tripstick/features/home/presentation/pages/first_page.dart';
 import 'package:tripstick/features/home/presentation/widgets/bottom_navigation_bar.dart';
 import 'package:tripstick/features/home/presentation/widgets/listview_body.dart';
 import 'package:tripstick/features/home/presentation/widgets/long_pic_widget.dart';
@@ -175,6 +176,7 @@ class _HomePageState extends State<HomePage> {
                             title: state.postItems[0].title,
                             descrebtion: state.postItems[0].subTitle,
                             buttontext: 'Explore',
+                            onPressed: () {},
                           ),
                           //! Fifth part (List view )
                           const SizedBox(height: 30),
@@ -246,7 +248,7 @@ class _HomePageState extends State<HomePage> {
                               },
                             ),
                           ),
-                          //! Last Part  (List view)
+                          //! Last Part  (Long pic)
                           const SizedBox(height: 50),
                           LontPicWidget(
                             right: queryData.size.width * 0.30,
@@ -255,6 +257,10 @@ class _HomePageState extends State<HomePage> {
                             title: state.postItems[3].title,
                             descrebtion: state.postItems[3].subTitle,
                             buttontext: '''Let's go''',
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const FirstPage()));
+                            },
                           ),
                           const SizedBox(height: 50)
                         ],

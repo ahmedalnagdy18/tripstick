@@ -9,7 +9,7 @@ class ListviewBody extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          width: 180,
+          width: 200,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: Colors.white,
@@ -25,7 +25,8 @@ class ListviewBody extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           child: Text(
             title,
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(
+                color: Colors.white, fontWeight: FontWeight.w700),
           ),
         ),
       ],

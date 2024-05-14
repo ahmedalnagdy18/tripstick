@@ -9,13 +9,15 @@ class LontPicWidget extends StatelessWidget {
       required this.assetName,
       required this.title,
       required this.descrebtion,
-      required this.buttontext});
+      required this.buttontext,
+      required this.onPressed});
   final double? right;
   final double? height;
   final String assetName;
   final String title;
   final String descrebtion;
   final String buttontext;
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -56,7 +58,7 @@ class LontPicWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 ButtonWidget(
-                  onPressed: () {},
+                  onPressed: onPressed,
                   text: buttontext,
                   color: Colors.white,
                   textcolor: Colors.black,
