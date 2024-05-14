@@ -1,47 +1,47 @@
 class ApiResponse {
-  final String lang;
-  final List<TravelInspiration> travelInspiration;
+  String? lang;
+  List<ApiTravelInspiration>? travelInspiration;
 
-  ApiResponse({required this.lang, required this.travelInspiration});
+  ApiResponse({this.lang, this.travelInspiration});
 
   factory ApiResponse.fromJson(Map<String, dynamic> json) {
     List<dynamic> travelInspirationJson = json['travel_inspiration'];
-    List<TravelInspiration> travelInspiration = travelInspirationJson
-        .map((item) => TravelInspiration.fromJson(item))
+    List<ApiTravelInspiration> travelInspiration = travelInspirationJson
+        .map((item) => ApiTravelInspiration.fromJson(item))
         .toList();
     return ApiResponse(
         lang: json['lang'], travelInspiration: travelInspiration);
   }
 }
 
-class TravelInspiration {
-  final int id;
-  final int sequence;
-  final String type;
-  final String? imageUrl;
-  final String title;
-  final String subTitle;
-  final String? buttonTitle;
-  final List<Destination>? list; // Nullable because not all items have a list
+class ApiTravelInspiration {
+  int? id;
+  int? sequence;
+  String? type;
+  String? imageUrl;
+  String? title;
+  String? subTitle;
+  String? buttonTitle;
+  List<ApiDestination>? list;
 
-  TravelInspiration({
-    required this.id,
-    required this.sequence,
-    required this.type,
-    required this.imageUrl,
-    required this.title,
-    required this.subTitle,
+  ApiTravelInspiration({
+    this.id,
+    this.sequence,
+    this.type,
+    this.imageUrl,
+    this.title,
+    this.subTitle,
     this.buttonTitle,
     this.list,
   });
 
-  factory TravelInspiration.fromJson(Map<String, dynamic> json) {
+  factory ApiTravelInspiration.fromJson(Map<String, dynamic> json) {
     List<dynamic>? listJson = json['list'];
-    List<Destination>? list;
+    List<ApiDestination>? list;
     if (listJson != null) {
-      list = listJson.map((item) => Destination.fromJson(item)).toList();
+      list = listJson.map((item) => ApiDestination.fromJson(item)).toList();
     }
-    return TravelInspiration(
+    return ApiTravelInspiration(
       id: json['id'],
       sequence: json['sequence'],
       type: json['type'],
@@ -54,21 +54,21 @@ class TravelInspiration {
   }
 }
 
-class Destination {
-  final int cityId;
-  final String title;
-  final String subTitle;
-  final String imageUrl;
+class ApiDestination {
+  int? cityId;
+  String? title;
+  String? subTitle;
+  String? imageUrl;
 
-  Destination({
-    required this.cityId,
-    required this.title,
-    required this.subTitle,
-    required this.imageUrl,
+  ApiDestination({
+    this.cityId,
+    this.title,
+    this.subTitle,
+    this.imageUrl,
   });
 
-  factory Destination.fromJson(Map<String, dynamic> json) {
-    return Destination(
+  factory ApiDestination.fromJson(Map<String, dynamic> json) {
+    return ApiDestination(
       cityId: json['city_id'],
       title: json['title'],
       subTitle: json['sub_title'],
