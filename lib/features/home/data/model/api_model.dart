@@ -1,45 +1,26 @@
-class ApiResponse {
-  String? lang;
-  List<ApiTravelInspiration>? travelInspiration;
+import '../../domian/entities/entity.dart';
 
-  ApiResponse({this.lang, this.travelInspiration});
-
-  factory ApiResponse.fromJson(Map<String, dynamic> json) {
-    List<dynamic> travelInspirationJson = json['travel_inspiration'];
-    List<ApiTravelInspiration> travelInspiration = travelInspirationJson
-        .map((item) => ApiTravelInspiration.fromJson(item))
-        .toList();
-    return ApiResponse(
-        lang: json['lang'], travelInspiration: travelInspiration);
-  }
-}
-
-class ApiTravelInspiration {
-  int? id;
-  int? sequence;
-  String? type;
-  String? imageUrl;
-  String? title;
-  String? subTitle;
-  String? buttonTitle;
-  List<ApiDestination>? list;
-
-  ApiTravelInspiration({
-    this.id,
-    this.sequence,
-    this.type,
-    this.imageUrl,
-    this.title,
-    this.subTitle,
-    this.buttonTitle,
-    this.list,
-  });
+class ApiTravelInspiration extends TravelInspirationEntity {
+  ApiTravelInspiration(
+      {required super.id,
+      required super.sequence,
+      required super.type,
+      super.imageUrl,
+      required super.title,
+      required super.subTitle,
+      super.buttonTitle,
+      super.list});
 
   factory ApiTravelInspiration.fromJson(Map<String, dynamic> json) {
-    List<dynamic>? listJson = json['list'];
-    List<ApiDestination>? list;
-    if (listJson != null) {
-      list = listJson.map((item) => ApiDestination.fromJson(item)).toList();
+    List<ApiDestination> list = [];
+    if (json['list'] != null) {
+      for (var element in json['list']) {
+        list.add(ApiDestination(
+            cityId: element['city_id'],
+            title: element['title'],
+            subTitle: element['sub_title'],
+            imageUrl: element['image_url']));
+      }
     }
     return ApiTravelInspiration(
       id: json['id'],
@@ -54,17 +35,12 @@ class ApiTravelInspiration {
   }
 }
 
-class ApiDestination {
-  int? cityId;
-  String? title;
-  String? subTitle;
-  String? imageUrl;
-
+class ApiDestination extends Destination {
   ApiDestination({
-    this.cityId,
-    this.title,
-    this.subTitle,
-    this.imageUrl,
+    required super.cityId,
+    required super.title,
+    required super.subTitle,
+    required super.imageUrl,
   });
 
   factory ApiDestination.fromJson(Map<String, dynamic> json) {

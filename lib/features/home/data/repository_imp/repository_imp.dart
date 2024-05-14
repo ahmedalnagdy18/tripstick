@@ -1,6 +1,6 @@
 import 'package:tripstick/features/home/data/data_source/data_source.dart';
-import 'package:tripstick/features/home/data/model/api_model.dart';
 import 'package:tripstick/features/home/domian/entities/entity.dart';
+
 import 'package:tripstick/features/home/domian/repositories/repository.dart';
 
 class HomeRepositoryImp extends HomeRepository {
@@ -9,7 +9,7 @@ class HomeRepositoryImp extends HomeRepository {
   HomeRepositoryImp({required this.getDataSource});
 
   @override
-  Future<List<ApiResponse>> getData(EntityModel entityModel) async {
+  Future<List<TravelInspirationEntity>> getData() async {
     return await getDataSource.fetchPosts();
   }
 }

@@ -1,4 +1,3 @@
-import 'package:tripstick/features/home/data/model/api_model.dart';
 import 'package:tripstick/features/home/domian/entities/entity.dart';
 import 'package:tripstick/features/home/domian/repositories/repository.dart';
 
@@ -7,9 +6,9 @@ class HomeUsecase {
 
   HomeUsecase({required this.repository});
 
-  Future<List<ApiResponse>> call(EntityModel entityModel) async {
+  Future<List<TravelInspirationEntity>> call() async {
     try {
-      return await repository.getData(entityModel);
+      return await repository.getData();
     } catch (e) {
       rethrow;
     }

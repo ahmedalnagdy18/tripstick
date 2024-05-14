@@ -1,11 +1,4 @@
-class EntityModel {
-  final String lang;
-  final List<TravelInspiration> travelInspiration;
-
-  EntityModel({required this.lang, required this.travelInspiration});
-}
-
-class TravelInspiration {
+class TravelInspirationEntity {
   final int id;
   final int sequence;
   final String type;
@@ -14,11 +7,11 @@ class TravelInspiration {
   final String subTitle;
   final String? buttonTitle;
   final List<Destination>? list;
-  TravelInspiration({
+  TravelInspirationEntity({
     required this.id,
     required this.sequence,
     required this.type,
-    required this.imageUrl,
+    this.imageUrl,
     required this.title,
     required this.subTitle,
     this.buttonTitle,
