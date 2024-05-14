@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tripstick/core/common/text_types.dart';
+import 'package:tripstick/features/home/presentation/widgets/bottom_navigation_bar.dart';
 import 'package:tripstick/features/home/presentation/widgets/listview_body.dart';
 import 'package:tripstick/features/home/presentation/widgets/long_pic_widget.dart';
 import 'package:tripstick/features/home/presentation/widgets/member_widget.dart';
@@ -13,17 +14,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: Colors.white,
+      bottomNavigationBar: BottomNavigationBarWidget(
+          currentIndex: _currentIndex,
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          }),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(top: 4),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
+            //! first part (app bar)
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -61,6 +71,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(height: 30),
+                //! second part (two widgets)
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Row(
